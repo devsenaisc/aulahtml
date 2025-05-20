@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>Calculadora de Gorjeta</h1>
+        
+        <div>
+            <label for="valorConta">Valor da Conta (R$):</label>
+            <input type="number" id="valorConta" placeholder="Digite o valor da conta">
+        </div>
+        
+        <div>
+            <label for="qualidadeServico">Qualidade do Serviço:</label>
+            <select id="qualidadeServico">
+                <option value="0.05">Ruim (5%)</option>
+                <option value="0.1">Aceitável (10%)</option>
+                <option value="0.15" selected>Bom (15%)</option>
+                <option value="0.2">Excelente (20%)</option>
+            </select>
+        </div>
+
+        <button type="button" onclick="calcularGorjeta()">Calcular</button>
+        <div id="valorgorjeta"></div>
+    </div>
+    <script>
+        let valorcontadit = 0
+        let porcentagem = 0
+        let totalGorjeta = 0
+        function calcularGorjeta() {
+           valorcontadit = parseFloat(document.getElementById("valorConta").value);
+            porcentagem = parseFloat(document.getElementById("qualidadeServico").value);
+    totalGorjeta = valorcontadit + valorcontadit * porcentagem;
+    
+    const campoGorjeta = document.getElementById('valorgorjeta');
+    campoGorjeta.innerHTML = `Valor da gorjeta: R$ ${totalGorjeta.toFixed(2)}`;
+}
+    </script>
+</body>
+</html>
