@@ -1,124 +1,19 @@
-  /* Reset básico */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
-    background-color: #f0f2f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.login-container {
-    width: 100%;
-    max-width: 400px;
-    padding: 20px;
-}
-
-.logo {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.logo h1 {
-    color: #1877f2;
-    font-size: 42px;
-    font-weight: bold;
-}
-
-.login-form {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #dddfe2;
-    border-radius: 6px;
-    font-size: 16px;
-}
-
-.form-group input:focus {
-    outline: none;
-    border-color: #1877f2;
-    box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
-}
-
-.login-button {
-    background-color: #1877f2;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 14px;
+p {
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
-    font-weight: bold;
-    width: 100%;
-    cursor: pointer;
-    margin-bottom: 15px;
 }
 
-.login-button:hover {
-    background-color: #166fe5;
+header {
+    background-color: rgba(0, 0, 0, 0.947);
+    padding: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 22px;
+    font-style: bold;
+    color: aliceblue;
 }
 
-.forgot-password {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.forgot-password a {
-    color: #1877f2;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.forgot-password a:hover {
-    text-decoration: underline;
-}
-input {
-    background-color: #42b72a;
-}
-
-.divider {
-    border-bottom: 1px solid #dadde1;
-    margin: 20px 0;
-}
-
-.create-account {
-    text-align: center;
-}
-
-.create-account-button {
-    background-color: #42b72a;
+.code {
+    background-color: black;
     color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 10px 16px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    display: inline-block;
-}
-
-.create-account-button:hover {
-    background-color: #36a420;
-}
-
-.footer {
-    text-align: center;
-    margin-top: 20px;
-    color: #737373;
-    font-size: 12px;
+    padding: 30px;
 }
