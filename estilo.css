@@ -1,19 +1,28 @@
-p {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
-}
-
-header {
-    background-color: rgba(0, 0, 0, 0.947);
-    padding: 20px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 22px;
-    font-style: bold;
-    color: aliceblue;
-}
-
-.code {
-    background-color: black;
+button {
+    background-color: green;
     color: white;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color:rgb(25, 89, 25);
+    cursor: pointer;
+}
+
+h1 {
+    background-color: antiquewhite;
+    color: aqua;
+    padding:50px;
+    margin-left: 30px;
+    border-style: dashed;
+    border-color: blueviolet;
+}
+
+.caixa {
     padding: 30px;
+    width: 300px;
+    border-color: black;
+    border: 2px;
+    border-style: solid;
+
 }
