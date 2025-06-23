@@ -1,0 +1,392 @@
+
+
+// UniQuizJavaScript.js
+
+// Referências aos elementos HTML
+const appContainer = document.getElementById("appContainer"); // Novo container para o fundo
+const telaInicial = document.getElementById("telaInicial");
+const botaoJogar = document.getElementById("botaoJogar");
+
+const selecaoNivel = document.getElementById("selecaoNivel");
+const nomeNivelAtualSpan = document.getElementById("nomeNivelAtual");
+const iniciarNivelBtn = document.getElementById("iniciarNivelBtn");
+
+const caixaUniQuiz = document.getElementById("caixaUniQuiz");
+const perguntaUniQuiz = document.getElementById("questaoUniQuiz");
+const opcoesRespostas = document.getElementById("opcoesRespostas");
+const botaoProximo = document.getElementById("botaoProximo");
+const caixaUniQuizimg = document.getElementById("caixaUniQuizimg");
+
+const resultadoNivel = document.getElementById("resultadoNivel");
+const pontuacaoNivelSpan = document.getElementById("pontuacaoNivel");
+const proximoNivelBtn = document.getElementById("proximoNivelBtn");
+const verPontuacaoTotalBtn = document.getElementById("verPontuacaoTotalBtn");
+
+const telaFinal = document.getElementById("telaFinal");
+const pontuacaoTotalFinalSpan = document.getElementById("pontuacaoTotalFinal");
+const recomecarQuizBtn = document.getElementById("recomecarQuiz");
+
+// Objeto para armazenar as perguntas de cada tema (nível)
+const temasQuiz = {
+    geografia: {
+    nome: "Geografia",
+    backgroundClass: "body-bg-geografia",
+    perguntas: [
+{
+    questao: "Qual é o maior deserto do mundo?",
+    opcoes: ["Saara", "Atacama", "Antártida", "Deserto de Gobi"],
+    respostaCorreta: "Antártida",
+    imagem: "https://segredosdomundo.r7.com/wp-content/uploads/2020/01/conheca-a-beleza-dos-maiores-desertos-do-mundo.jpeg"
+},
+{
+    questao: "Qual é a capital do Brasil?",
+    opcoes: ["Paraná", "Brasília", "Rio de Janeiro", "São Paulo"],
+    respostaCorreta: "Brasília",
+    imagem: "https://conteudo.imguol.com.br/c/entretenimento/19/2021/04/21/congresso-nacional-em-brasilia-que-comemora-61-anos-1619029437285_v2_1170x540.jpg"
+},
+{
+    questao: "Qual é a capital da Austrália?",
+    opcoes: [" Sydney", "Canadá", "Nova Zelândia", "Camberra"],
+    respostaCorreta: "Camberra",
+    imagem: "https://static.significados.com.br/foto/australia-og.jpg?class=ogImageWide"
+},
+{
+    questao: "Qual é o país com maior população no mundo?",
+    opcoes: ["Índia", "China", "Estados Unidos", "Indonésia"],
+    respostaCorreta: "Índia",
+    imagem: "https://www.esmaelmorais.com.br/wp-content/uploads/2024/01/populacao-mundial.jpg"
+},
+{
+    questao: " Qual a linha imaginária que atravessa o Brasil?",
+    opcoes: ["Equador", "Círculo Polar Ártico", "Trópico de Cancêr", "Greenwich"],
+    respostaCorreta: "Equador",
+    imagem: "https://dicasvestibulares.s3.amazonaws.com/wp-content/uploads/2022/08/linha-do-equador.jpeg"
+},
+{
+    questao: "Qual o oceano que banha o Brasil?",
+    opcoes: ["Pacífico", "Índico", "Atlântico", "Ártico"],
+    respostaCorreta: "Atlântico",
+    imagem: "https://s2-valor.glbimg.com/7a8jKR5TdFm7qMwCvXSCvAuYHBY=/0x0:1920x1280/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2023/f/D/s3f0SGTPG3xptue0RrrQ/sea-1836480-1920.jpg"
+},
+{
+    questao: "Qual é o principal combustível fossil da 1 Revolução Industrial?",
+    opcoes: ["Óleo Diesel", "Petróleo", "Carvão Mineral", "Gás Natural"],
+    respostaCorreta: "Carvão Mineral",
+    imagem: "https://www.ruff.com.br/wp-content/uploads/old/10_10_capablog.png"
+},
+{
+    questao: "Qual é o único continente com terra nos quatro hemisférios?",
+    opcoes: ["Europa", "Ásia", "Oceania", "África"],
+    respostaCorreta: "África",
+    imagem: "https://img.freepik.com/fotos-premium/ponto-de-interrogacao-no-fundo-do-mapa-do-mundo-duvidas-sobre-a-questao-politica_159348-334.jpg"
+},
+{
+    questao: "Além da Turquia, qual outro país está presente em dois continentes?",
+    opcoes: ["Rússia", "China", "Japão", "Itália"],
+    respostaCorreta: "Rússia",
+    imagem: "https://concursosnobrasil.com/wp-content/uploads/2024/12/quantos-continentes-o-mundo-tem.jpg"
+},
+{
+    questao: "Qual é o movimento terrestre responsável pela ocorrência das estações do ano?",
+    opcoes: ["Nutação", "Transformação", "Rotação", "Translação"],
+    respostaCorreta: "Translação",
+    imagem: "https://static.escolakids.uol.com.br/2020/04/1-shutterstock-1474550141.jpg"
+}
+           
+    ]
+},
+    biologia: {
+    nome: "Biologia",
+    backgroundClass: "body-bg-biologia",
+    perguntas: [
+{
+    questao: "Qual é a unidade básica de todos os seres vivos?",
+    opcoes: ["Célula", "Sangue", "Pulmão", "Coração"],
+    respostaCorreta: "Célula",
+    imagem: "https://img.freepik.com/fotos-premium/uma-celula-inteira-e-processo-de-divisao-celular-no-modelo-visual_124507-30913.jpg?semt=ais_hybrid&w=740"
+},
+{
+    questao: "O processo pelo qual as plantas produzem seu próprio alimento?",
+    opcoes: ["Polinização", "Germinação", "Fotossíntese", "Adubação"],
+    respostaCorreta: "Fotossíntese",
+    imagem: "https://igui-ecologia.s3.amazonaws.com/wp-content/uploads/2018/09/planta-recebendo-luz-solar.jpg"
+},
+{
+    questao: "Qual gás os seres humanos inalam para respirar?",
+    opcoes: ["Metano", "Gás carbônico", "Hélio", "Oxigênio"],
+    respostaCorreta: "Oxigênio",
+    imagem: "https://clinicadopulmao.med.br/wp-content/uploads/2020/10/Qual-o-melhor-exame-para-o-pulm%C3%A3o-Cl%C3%ADnica-do-Pulm%C3%A3o.jpg"
+},
+{
+    questao: "Sistema do corpo humano que é responsável por digerir os alimentos?",
+    opcoes: ["Esquelético", "Urinário", "Digestório", "Nervoso"],
+    respostaCorreta: "Digestório",
+    imagem: "https://blog.essenciadovale.com/wp-content/uploads/2022/11/Alimentacao-saudavel-e-saborosa-e-possivel.jpg"
+},
+{
+    questao: "Orgão responsável por bombear sangue no corpo humano?",
+    opcoes: ["Coração", "Veias", "Pulmão", "Figado"],
+    respostaCorreta: "Coração",
+    imagem: "https://i0.wp.com/teslaimagem.com.br/wp-content/uploads/2018/01/excesso-de-ferro-no-sangue-1.jpg?resize=900%2C480&ssl=1"
+},
+{
+    questao: "Qual o processo de divisão celular que forma gametas?",
+    opcoes: ["Mitose", "Meiose", "Fissão", "Brotamento"],
+    respostaCorreta: "Meiose",
+    imagem: "https://static.escolakids.uol.com.br/conteudo_legenda/618148fba2d401362ed22b75e531e6bf.jpg"
+},
+{
+    questao: "Qual a estrutura responsável por armazenar a informação genética?",
+    opcoes: ["Proteína", "Lipído", "Carboidrato", "DNA"],
+    respostaCorreta: "DNA",
+    imagem: "https://www.vitagene.com.br/wp-content/uploads/2023/01/o-que-e-dna-adn-significado.png"
+},
+{
+    questao: "Qual o reino que inclui fungos?",
+    opcoes: ["Animalia", "Plantae", "Fungi", "Protista"],
+    respostaCorreta: "Fungi",
+    imagem: "https://www.lbnanalises.com.br/wp-content/uploads/2018/02/fungos-ar-e1616715982666.jpg"
+},
+   
+    ]
+},
+    sistemasolar: {
+    nome: "Sistema Solar",
+    backgroundClass: "body-bg-sistemasolar", // Fundo do espaço
+    perguntas: [
+
+{
+    questao: "Em que galáxia está o Sistema Solar?",
+    opcoes: ["Andrômeda", "Via Láctea", "Galáxia do Triângulo", "Galáxia de Sombrero"],
+    respostaCorreta: "Via Láctea",
+    imagem: "https://s2.static.brasilescola.uol.com.br/be/2022/05/via-lactea.jpg"
+},
+{
+    questao: " Qual é o nome da teoria mais aceita em que marca o início do universo?",
+    opcoes: ["Big Crunch", "Buraco Branco", "Expansão Estelar", "Big Bang"],
+    respostaCorreta: "Big Bang",
+    imagem: "https://services.meteored.com/img/article/a-que-distancia-estamos-del-punto-donde-comenzo-el-big-bang-1724198813143_512.jpg"
+},
+{
+    questao: "Qual é o maior planeta do nosso sistema solar?",
+    opcoes: ["Marte", "Júpiter", "Terra", "Saturno"],
+    respostaCorreta: "Júpiter",
+    imagem: "https://s1.static.brasilescola.uol.com.br/be/2022/09/2-sistema-solar.jpg"
+},
+{
+    questao: "Por qual outro nome é conhecida a Nebulosa de Hélix?",
+    opcoes: ["Olho de Deus", "Pilares da criação", "Andrômeda", "Nebulosa de Órion"],
+    respostaCorreta: "Olho de Deus",
+    imagem: "https://revistaplaneta.com.br/wp-content/uploads/sites/3/2019/08/helix.jpg"
+},
+{
+    questao: " Qual desses corpos celestes é um satélite natural da Terra?",
+    opcoes: ["Sol", "Marte", "Lua", "Fobos"],
+    respostaCorreta: "Lua",
+    imagem: "https://static.todamateria.com.br/upload/sa/te/satelites-artificiais-og.jpg?class=ogImageWide"
+},
+{
+    questao: "Qual o maior buraco negro já descoberto?",
+    opcoes: ["TON 618", "1E1740.7-2942", "Phoenix A", "S5 0014+81 "],
+    respostaCorreta: "Phoenix A",
+    imagem: "https://live.staticflickr.com/65535/53529742793_ed0b71fac8_b.jpg"
+},
+{
+    questao: "Quantos planetas existem atualmente no Sistema Solar?",
+    opcoes: ["10", "9", "7", "8"],
+    respostaCorreta: "8",
+    imagem: "https://static.todamateria.com.br/upload/si/st/sistema-solar-og.jpg?class=ogImageWide"
+},
+{
+    questao: "Qual é o planeta mais próximo do Sol?",
+    opcoes: ["Vênus", "Mercúrio", "Marte", "Saturno"],
+    respostaCorreta: "Mercúrio",
+    imagem: "https://uploads.folhavitoria.com.br/2024/10/lvMTytzH-glowing-sphere-orbits-planet-illuminates-dark-night-generated-by-ai-1024x585.webp"
+},
+{
+    questao: "Qual dos seguintes planetas não possui anéis visíveis a partir de telescópios terrestres?",
+    opcoes: ["Marte", "Jupiter", "Urano", "Terra"],
+    respostaCorreta: "Marte",
+    imagem: "https://s10.s3c.es/imag/_v0/4206x2296/6/e/0/planeta-marte-espacio-istock.jpg"
+},
+{
+    questao: "O que são os anos-luz?",
+    opcoes: ["A duração de um ano em Vênus", "A velocidade da luz", "A distância que a luz percorre em um ano", "O tempo que um planeta leva para girar"],
+    respostaCorreta: "A distância que a luz percorre em um ano",
+    imagem: "https://images.theconversation.com/files/436087/original/file-20211207-23-19a4qwh.jpg?ixlib=rb-4.1.0&rect=14,7,4977,4453&q=45&auto=format&w=926&fit=clip"
+},
+           
+        ]
+    }
+};
+
+// Ordem dos temas
+const ordemTemas = ["geografia", "biologia", "sistemasolar"];
+let temaAtualIndex = 0;
+let questoesDoNivelAtual = [];
+let indiceQuestaoAtual = 0;
+let pontuacaoNivel = 0;
+let pontuacaoTotal = 0;
+
+// --- Funções de Gerenciamento de Telas e Fundo ---
+
+function mostrarTela(telaParaMostrar) {
+    const todasAsTelas = document.querySelectorAll(".tela-container");
+    todasAsTelas.forEach(tela => tela.classList.remove("active"));
+    telaParaMostrar.classList.add("active");
+}
+
+function trocarFundo(backgroundClass) {
+    // Remove todas as classes de fundo existentes
+    appContainer.classList.forEach(cls => {
+        if (cls.startsWith("body-bg-")) {
+            appContainer.classList.remove(cls);
+        }
+    });
+    // Adiciona a nova classe de fundo
+    appContainer.classList.add(backgroundClass);
+}
+
+// --- Funções do Quiz ---
+
+function iniciarNivel() {
+    const temaNome = ordemTemas[temaAtualIndex];
+    const temaData = temasQuiz[temaNome];
+
+    questoesDoNivelAtual = temaData.perguntas;
+    indiceQuestaoAtual = 0;
+    pontuacaoNivel = 0;
+
+    trocarFundo(temaData.backgroundClass); // Troca o fundo para o tema atual
+    mostrarTela(caixaUniQuiz); // Mostra a caixa do quiz
+    carregarQuestao();
+}
+
+function carregarQuestao() {
+    botaoProximo.style.display = "none";
+
+    const questaoAtual = questoesDoNivelAtual[indiceQuestaoAtual];
+    perguntaUniQuiz.textContent = questaoAtual.questao;
+    opcoesRespostas.innerHTML = "";
+
+    if (questaoAtual.imagem) {
+        caixaUniQuizimg.src = questaoAtual.imagem;
+        caixaUniQuizimg.style.display = "block";
+        caixaUniQuizimg.alt = `Imagem ilustrativa da questão: ${questaoAtual.questao}`;
+    } else {
+        caixaUniQuizimg.src = "";
+        caixaUniQuizimg.style.display = "none";
+    }
+
+    questaoAtual.opcoes.forEach(opcao => {
+        const botao = document.createElement("button");
+        botao.textContent = opcao;
+        botao.classList.add("answer-btn");
+        botao.addEventListener("click", () => verificarResposta(opcao));
+        opcoesRespostas.appendChild(botao);
+    });
+}
+
+function verificarResposta(respostaSelecionada) {
+    const questaoAtual = questoesDoNivelAtual[indiceQuestaoAtual];
+    const botoesResposta = opcoesRespostas.querySelectorAll(".answer-btn");
+
+    botoesResposta.forEach(botao => {
+        if (botao.textContent === questaoAtual.respostaCorreta) {
+            botao.classList.add("correct");
+        }
+        if (botao.textContent === respostaSelecionada && respostaSelecionada !== questaoAtual.respostaCorreta) {
+            botao.classList.add("incorrect");
+        }
+        botao.disabled = true;
+    });
+
+    if (respostaSelecionada === questaoAtual.respostaCorreta) {
+        pontuacaoNivel++;
+    }
+
+    botaoProximo.style.display = "block";
+}
+
+function proximaQuestao() {
+    indiceQuestaoAtual++;
+    if (indiceQuestaoAtual < questoesDoNivelAtual.length) {
+        carregarQuestao();
+    } else {
+        // Nível atual concluído
+        mostrarResultadoNivel();
+    }
+}
+
+function mostrarResultadoNivel() {
+    pontuacaoTotal += pontuacaoNivel; // Adiciona a pontuação do nível à pontuação total
+    pontuacaoNivelSpan.textContent = `${pontuacaoNivel} de ${questoesDoNivelAtual.length}`;
+
+    // Verifica se há mais níveis
+    if (temaAtualIndex < ordemTemas.length - 1) {
+        proximoNivelBtn.style.display = "block"; // Mostra botão "Próximo Nível"
+        verPontuacaoTotalBtn.style.display = "none"; // Esconde botão de pontuação final
+    } else {
+        proximoNivelBtn.style.display = "none"; // Esconde "Próximo Nível"
+        verPontuacaoTotalBtn.style.display = "block"; // Mostra "Ver Pontuação Total"
+    }
+
+    mostrarTela(resultadoNivel); // Mostra a tela de resultado do nível
+}
+
+function passarProximoNivel() {
+    temaAtualIndex++; // Avança para o próximo tema
+    if (temaAtualIndex < ordemTemas.length) {
+        const proximoTemaNome = ordemTemas[temaAtualIndex];
+        nomeNivelAtualSpan.textContent = temasQuiz[proximoTemaNome].nome; // Atualiza nome do nível
+        mostrarTela(selecaoNivel); // Volta para a tela de seleção de nível
+    } else {
+        // Todos os níveis concluídos
+        mostrarTelaFinal();
+    }
+}
+
+function mostrarTelaFinal() {
+    pontuacaoTotalFinalSpan.textContent = `${pontuacaoTotal} de ${ordemTemas.reduce((acc, tema) => acc + temasQuiz[tema].perguntas.length, 0)}`; // Pontuação total de todas as perguntas
+    mostrarTela(telaFinal);
+    // Opcional: Voltar para o fundo inicial ou um fundo de "fim de jogo"
+    trocarFundo("body-bg-inicial");
+}
+
+function resetarQuiz() {
+    temaAtualIndex = 0;
+    pontuacaoTotal = 0;
+    // Garante que o fundo inicial seja aplicado ao reiniciar
+    trocarFundo("body-bg-inicial");
+    // Volta para a tela inicial
+    mostrarTela(telaInicial);
+}
+
+// Ao carregar a página, mostra a tela inicial
+document.addEventListener("DOMContentLoaded", () => {
+    trocarFundo("body-bg-inicial"); // Define o fundo inicial
+    mostrarTela(telaInicial);
+});
+
+// Botão "Jogar" da tela inicial
+botaoJogar.addEventListener("click", () => {
+    // Ao clicar em jogar, vai para a tela de seleção do primeiro nível
+    const primeiroTemaNome = ordemTemas[0];
+    nomeNivelAtualSpan.textContent = temasQuiz[primeiroTemaNome].nome;
+    mostrarTela(selecaoNivel);
+});
+
+// Botão "Iniciar Nível" da tela de seleção de nível
+iniciarNivelBtn.addEventListener("click", iniciarNivel);
+
+// Botão "Próxima Questão" dentro do quiz
+botaoProximo.addEventListener("click", proximaQuestao);
+
+// Botão "Próximo Nível" da tela de resultado do nível
+proximoNivelBtn.addEventListener("click", passarProximoNivel);
+
+// Botão "Ver Pontuação Total" da tela de resultado do último nível
+verPontuacaoTotalBtn.addEventListener("click", mostrarTelaFinal);
+
+// Botão "Recomeçar Quiz" da tela final
+recomecarQuizBtn.addEventListener("click", resetarQuiz);
